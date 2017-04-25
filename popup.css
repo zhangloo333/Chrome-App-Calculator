@@ -1,0 +1,110 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    /*box-sizing: border-box;*/
+
+    /* Better text styling */
+    font: bold 14px Arial, sans-serif;
+}
+
+/* Using box shadows to create 3D effects */
+body{
+    width: 322px;
+    height: 274px;
+    background: white;
+    background: radial-gradient(circle, #fff 20%, #ccc);
+    background-size: cover;
+}
+
+#calculator{
+    width: 322px;
+    height: 273px;
+
+    padding-top: 10px;
+    background: linear-gradient(#9dd2ea, #8bceec);
+
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+
+    box-shadow: 0px 5px #009de4;
+
+}
+
+.screen{
+
+    height: 40px;
+    width: 309px;
+    background: yellow;
+    margin: 0px auto;
+    border-radius: 5px;
+    box-shadow: inset 0px 4px rgba(0,0,0,0.2);
+}
+
+
+
+.keys {
+    overflow: hidden;
+    margin: 20px 4px 5px 3px;
+
+}
+
+.keys span {
+    float: left;
+    position: relative;
+    margin: 5px 4px 5px 3px;
+
+    width: 56px;
+    height:40px;
+
+    background: white;
+    border-radius: 5px;
+
+    color: #888;
+    line-height: 40px;
+    text-align: center;
+
+    cursor: pointer;
+
+    user-select: none;
+    transition: all 0.4s ease;
+
+}
+
+.keys span.operator {
+    background: #FFF0F5;
+}
+
+.keys span:hover {
+    background: #9c89f6;
+    box-shadow: 0px 4px #6b54d3;
+    color: white;
+}
+
+.keys span.eval:hover {
+    background: #abb850;
+    box-shadow: 0px 4px #717a33;
+    color: #ffffff;
+}
+
+.keys span.clear:hover {
+    background: #f68991;
+    box-shadow: 0px 4px #d3545d;
+    color: white;
+}
+
+.keys span:active {
+    box-shadow: 0px 0px #6b54d3;
+    top: 4px;
+}
+
+.keys span.eval:active {
+    box-shadow: 0px 0px #717a33;
+    top: 4px;
+}
+
+.keys span.clear:active {
+    top: 4px;
+    box-shadow: 0px 0px #d3545d;
+}
