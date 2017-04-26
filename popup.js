@@ -22,11 +22,19 @@ for(var i = 0; i < keys.length; i++) {
             decimalAdded = false;
         }
 
-        // else if(btnVal == 'Del'){
-        //
-        //   console.log("enter");
-        //
-        // }
+         else if(btnVal == 'Del'){
+           var temp = input.innerHTML;
+           input.innerHTML = temp.slice(0,temp.length-1) ;
+        
+         }
+        
+        else if (btnVal == "=") {
+            var output = input.innerHTML;
+            var regexp = /[x÷+-]/
+            var newt = output.split(regexp);
+            console.log(newt);                      
+            console.log(output);
+        }
 
         else{
           input.innerHTML += btnVal;
