@@ -1,6 +1,8 @@
 /**
  * Created by lee on 4/24/17.
  */ 
+
+(function(){
 var keys = document.querySelectorAll('#calculator span');
 var operators = ['+', '-', 'x', '÷','%'];
 var decimalAdded = false;
@@ -97,5 +99,5 @@ function validDecimal (result) {
     return parseInt(result) == result ? true : false;
 }
 
-
+})()
 
