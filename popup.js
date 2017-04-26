@@ -36,67 +36,11 @@ for(var i = 0; i < keys.length; i++) {
             var numbers = output.split(regexp).reverse();
             var oprts = output.match(regexp1);
             
-            console.log(oprts);                      
-            console.log(numbers);                      
-            console.log(output);
+            console.log("oprts= " + oprts);                      
+            console.log("number= " + numbers);                      
+            console.log("output= " + output);
             // caculate the value;
-    
-            if(oprts != null) {
-             while(oprts.length != 0) {
-                var oprt = oprts.pop();
-                var num1 = parseFloat(numbers.pop());
-                var num2 = parseFloat(numbers.shift());
-                if(oprt == "+"){
-//                    var num11 = parseFloat(num1);
-//                    var num22 = parseFloat(num2);
-                   if(parseInt(num1+num2) == num1+num2){
-                       numbers.push((num1+num2)+"")
-                   } else{
-                        numbers.push((num1+num2).toFixed(3)+"");
-                        console.log(numbers);
-                   }
-                   
-                } else if (oprt == "-"){
-                    if(parseInt(num1-num2) == num1-num2){
-                       numbers.push((num1-num2)+"")
-                   } else{
-                        numbers.push((num1-num2).toFixed(3)+"");
-                        console.log(numbers);
-                   }                    
-                } else if(oprt == "x"){
-                    if(parseInt(num1*num2) == num1*num2){
-                       numbers.push((num1*num2)+"")
-                   } else{
-                        numbers.push((num1*num2).toFixed(3)+"");
-                        console.log(numbers);
-                   }    
-                    
-                } else if(oprt == "÷"){
-                    if(parseInt(num1/num2) == num1/num2){
-                       numbers.push((num1/num2)+"")
-                   } else{
-                        numbers.push((num1/num2).toFixed(3)+"");
-                        console.log(numbers);
-                   }    
-                    
-                } else if(oprt == "%") {
-                    var temp = num1 % num2;
-                    console.log('temp' + temp);
-                    if(parseInt(temp) == temp){
-                       numbers.push((temp)+"")
-                   } else{
-                        numbers.push((temp).toFixed(3)+"");
-                        console.log(numbers);
-                   }    
-                }
-                else{
-                    continue;
-                }
-                 console.log(oprts);
-                 console.log(numbers);
-             }
-            } 
-            
+            numbers = ReversePolish(numbers,oprts);
             input.innerHTML = numbers.pop();
         }
 
@@ -106,6 +50,52 @@ for(var i = 0; i < keys.length; i++) {
     }
 }
 
+function ReversePolish(arrNum, arrOper) {
+    if(arrOper == null) {
+        return arrNum;
+    }
+    if(arrNum == null) {
+        return arrNum.push("error");
+    }
+
+    while(arrOper.length != 0) {
+        var oprt = arrOper.shift();
+        var num1 = parseFloat(arrNum.pop());
+        var num2 = parseFloat(arrNum.pop());
+        console.log("num1= " + num1);
+        console.log("num2= " +num2);
+        var temp;
+
+        switch(oprt) {
+            case "+":
+                temp = num1 + num2;
+                break;
+            case "-":
+                temp = num1 - num2;
+                break;
+            case "x":
+                temp = num1 * num2;
+                break;
+            case "÷":
+                temp = num1 / num2;
+                break;
+            case "%":
+                temp = num1 % num2;
+                break;
+            default:
+                break;
+        }
+        validDecimal(temp) ? temp : temp.toFixed(3);
+        console.log('temp= ' + temp);
+        arrNum.push(temp + "");
+    }
+
+    return arrNum;
+}
+
+function validDecimal (result) {
+    return parseInt(result) == result ? true : false;
+}
 
 
 
