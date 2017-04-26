@@ -4,55 +4,41 @@
 
 (function(){
 var keys = document.querySelectorAll('#calculator span');
-var operators = ['+', '-', 'x', '÷','%'];
-var decimalAdded = false;
 
 for(var i = 0; i < keys.length; i++) {
-  var result = [];
+    // add key listener;
     keys[i].onclick = function (e) {
         // Get the input and button values
         var input = document.querySelector('.screen');
         var inputVal = input.innerHTML;
         var btnVal = this.innerHTML;
-        result += btnVal;
-        console.log(btnVal);
-
 
         if(btnVal == 'C') {
             input.innerHTML = '';
-            decimalAdded = false;
-        }
-
-         else if(btnVal == 'Del'){
+        } else if(btnVal == 'Del'){
            var temp = input.innerHTML;
            input.innerHTML = temp.slice(0,temp.length-1) ;
         
-         }
-        
-        else if (btnVal == "=") {
+        } else if (btnVal == "=") {
             var output = input.innerHTML;
-            
-            //get a two array;
-            var regexp = /[%x÷+-]/
-            var regexp1 = /[%x÷+-]/g
+            console.log(output);
+            //get a two array one for nums, one for operators;
+            var regexp = /[%x÷+-]/g
             var numbers = output.split(regexp).reverse();
-            var oprts = output.match(regexp1);
+            var oprts = output.match(regexp);
             
-            console.log("oprts= " + oprts);                      
-            console.log("number= " + numbers);                      
-            console.log("output= " + output);
             // caculate the value;
             numbers = ReversePolish(numbers,oprts);
+            // update caculat value;
             input.innerHTML = numbers.pop();
-        }
-
-        else{
-          input.innerHTML += btnVal;
+        } else{
+            // update inut value;
+            input.innerHTML += btnVal;
         }
     }
 }
 
-function ReversePolish(arrNum, arrOper) {
+var ReversePolish = function(arrNum, arrOper) {
     if(arrOper == null) {
         return arrNum;
     }
@@ -64,8 +50,6 @@ function ReversePolish(arrNum, arrOper) {
         var oprt = arrOper.shift();
         var num1 = parseFloat(arrNum.pop());
         var num2 = parseFloat(arrNum.pop());
-        console.log("num1= " + num1);
-        console.log("num2= " +num2);
         var temp;
 
         switch(oprt) {
@@ -88,16 +72,13 @@ function ReversePolish(arrNum, arrOper) {
                 break;
         }
         validDecimal(temp) ? temp : temp.toFixed(3);
-        console.log('temp= ' + temp);
         arrNum.push(temp + "");
     }
 
     return arrNum;
 }
-
-function validDecimal (result) {
+var validDecimal = function (result) {
     return parseInt(result) == result ? true : false;
 }
-
 })()
 
